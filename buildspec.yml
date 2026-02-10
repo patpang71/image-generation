@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.12  # Or 3.9, 3.10, 3.12 depending on your preference
+      nodejs: 22    # Required to run the 'aws-cdk' CLI tool
+    commands:
+      # 1. Install the CDK CLI globally (using Node)
+      - npm install -g aws-cdk
+      
+      # 2. Install your Python dependencies
+      # We install them directly to the system (no venv needed in a temporary container)
+      - pip install -r requirements.txt
+
+  build:
+    commands:
+      # Optional: Check if your code synthesizes correctly
+      - cdk synth
+
+  post_build:
+    commands:
+      # Deploy the application
+      # --require-approval never: Prevents hanging on "Do you want to deploy? (y/n)"
+      - cdk deploy --require-approval never
