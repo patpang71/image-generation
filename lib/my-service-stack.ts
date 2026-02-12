@@ -16,7 +16,7 @@ export class MyServiceStack extends cdk.Stack {
     const fn = new lambda.Function(this, 'EmployeeLambda', {
       runtime: lambda.Runtime.PYTHON_3_12,
       handler: 'app.handler',
-      code: lambda.Code.fromAsset(path.join(__dirname, '..', 'lambda')),
+      code: lambda.Code.fromAsset(path.join(__dirname, '..', 'lambdas')),
       timeout: cdk.Duration.seconds(10),
       environment: {
         // your env vars (Dynamo table name, etc.)

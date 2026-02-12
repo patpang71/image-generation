@@ -25,7 +25,7 @@ export class PipelineStack extends cdk.Stack {
         commands: [
           'npm ci',
           'npm run build',
-          'cd lambda',
+          'cd lambdas',
           'pip install -r requirements.txt -t .',
           'pytest tests',
           'cd ..',
@@ -50,8 +50,8 @@ export class PipelineStack extends cdk.Stack {
     devStage.addPost(
       new CodeBuildStep('IntegrationTests', {
         commands: [
-          'python -m pip install -r requirements-dev.txt || true',
-          'pytest tests/integration',
+          'python -m pip install -r lambdas/requirements-dev.txt || true',
+          'pytest lambdas/tests',
         ],
         envFromCfnOutputs: {
           // 👈 This is the key part: use the Stage, not StageDeployment
