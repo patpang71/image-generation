@@ -1,0 +1,5 @@
+requests==2.31.0
+moto==5.0.0        # if you mock AWS services
+pytest==7.2.0     # for testing
+pytest-mock==3.7.0 # for mocking in tests
+boto3==1.28.0     # AWS SDK for Python, if you interact with AWS services in your tests
